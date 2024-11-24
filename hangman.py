@@ -1,13 +1,13 @@
 class HangMan:
     def __init__(self):
-        self.hangManLimit = 6
-        self.hangManScore = 0
+        self.MAX_TRIES = 6
+        self.currentTries = 0
 
     def updateHangMan(self):
-        self.hangManScore += 1
+        self.currentTries += 1
 
     def drawHangMan(self):
-        currentScore = self.hangManScore
+        currentScore = self.currentTries
 
         if currentScore == 0:
             print(
@@ -38,11 +38,9 @@ class HangMan:
                 "   ______\n   |    |\n   o    |\n  /|\\   |\n  / \\   |\n _______|\n|_HANG__|        \n"
             )
 
-        # print(f"Try Left: {self.hangManLimit - currentScore}\n")
+        # print(f"Try Left: {self.MAX_TRIES - currentScore}\n")
 
     def checkIfManHanged(self):
-        if self.hangManScore == self.hangManLimit:
+        if self.currentTries == self.MAX_TRIES:
             return True
         return False
-
-

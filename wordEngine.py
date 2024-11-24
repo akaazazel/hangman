@@ -34,13 +34,15 @@ class WordEngine:
                 print(i.upper(), end="")
             else:
                 print("_", end="")
-        print(f" ({len(self.activeWord)})")
+        print(f" ({len(self.activeWord)} letters)")
 
     def displayGuessedLetters(self):
-
         if len(self.allGuessedLetters) == 0:
             return
         print("Guessed: [", end=" ")
         for letter in self.allGuessedLetters:
             print(letter.upper(), end=" ")
         print("]")
+
+    def displayHint(self):
+        print(f"First letter is {self.activeWord[0]}")

@@ -18,6 +18,7 @@ class Main:
 
             elif command in ["/quit", "/q"]:
                 self.exitTheGame()
+                return
 
             else:
                 print("Try again")
@@ -35,6 +36,12 @@ class Main:
 
                 if guess in ["/quit", "/q"]:
                     self.exitTheGame()
+                    return
+                elif guess in ["/restart", "/r"]:
+                    break
+                elif guess in ["/hint", "/h"]:
+                    engine.displayHint()
+                    continue
 
                 if (engine.checkIfGuessIsRight(guess) == 2) or (
                     self.checkIfGuessedAllLetters(engine)
@@ -72,7 +79,6 @@ class Main:
 
     def exitTheGame(self):
         print("Bye!")
-        exit()
 
 
 main = Main()

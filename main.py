@@ -10,15 +10,21 @@ class Main:
         self.score = score.Score()
 
     def main(self):
+        print("--HANGMAN--")
+        print("use -help for help and commands.\n")
         while True:
             command = input("Press enter to continue!")
             if command == "":
                 hangMan = hm.HangMan()
                 engine = we.WordEngine(hangMan)
 
-            elif command in ["/quit", "/q"]:
+            elif command in ["-quit", "-q"]:
                 self.exitTheGame()
                 return
+
+            elif command == "-help":
+                self.openHelp()
+                continue
 
             else:
                 print("Try again")
@@ -34,12 +40,15 @@ class Main:
                     print("Try again!\n")
                     continue
 
-                if guess in ["/quit", "/q"]:
+                if guess in ["-quit", "-q"]:
                     self.exitTheGame()
                     return
-                elif guess in ["/restart", "/r"]:
+                elif guess in ["-restart", "-r"]:
                     break
-                elif guess in ["/hint", "/h"]:
+                elif guess in ["-newgame", "-ng"]:
+                    self.startNewGame()
+                    break
+                elif guess in ["-hint", "-h"]:
                     engine.displayHint()
                     continue
 
@@ -73,6 +82,21 @@ class Main:
             if letter not in engine.guessedLetters:
                 return False
         return True
+
+    def openHelp(self):
+        commands = {
+            "-quit, -q": "quit the game",
+            "-restart, -r": "restart the game with current score",
+            "-newgame, -ng": "start a new game with no score",
+            "-hint, -h": "displays the first letter of the word",
+        }
+
+        for command, desc in commands.items():
+            print(f"{command}\t: {desc}")
+        print("")
+
+    def startNewGame(self):
+        self.score = score.Score()
 
     def delay(self, duration=0.5):
         sleep(duration)

@@ -2,20 +2,32 @@ import random
 
 
 class WordEngine:
+    FILE_PATH = "wordList.txt"
+
     def __init__(self, hangMan):
-        self.wordList = [
-            "elephant",
-            "rabbit",
-            "dinosaurs",
-        ]  # list of words to choose from
+        self.wordList = self.loadWords(self.FILE_PATH)  # list of words to choose from
+
         self.guessedLetters = (
             []
         )  # list of all guessed letters which are present in the word
+
         self.allGuessedLetters = []  # list of all guessed letters
+
         self.activeWord = (
             self.chooseWord()
         )  # the new word which is currently in the game
+
         self.hangMan = hangMan  # new hangman
+
+    def loadWords(self, filepath):
+        try:
+            with open(filepath, "r") as file:
+                wordList = [line.strip().lower() for line in file.readlines()]
+                return wordList
+        except FileNotFoundError:
+            print("Word file not found. Using default word list.")
+            wordList = ["elephant", "rabbit", "dinosaur"]
+            return wordList
 
     def chooseWord(self):
         """Return a random word chosen from a list of words."""

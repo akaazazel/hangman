@@ -7,15 +7,13 @@ class WordEngine:
     def __init__(self, hangMan):
         self.wordList = self.loadWords(self.FILE_PATH)  # list of words to choose from
 
-        self.guessedLetters = (
-            []
-        )  # list of all guessed letters which are present in the word
+        # list of all guessed letters which are present in the word
+        self.guessedLetters = []
 
         self.allGuessedLetters = []  # list of all guessed letters
 
-        self.activeWord = (
-            self.chooseWord()
-        )  # the new word which is currently in the game
+        # the new word which is currently in the game
+        self.activeWord = self.chooseWord()
 
         self.hangMan = hangMan  # new hangman
 

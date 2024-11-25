@@ -68,7 +68,7 @@ class Main:
             if (engine.checkIfGuessIsRight(guess) == 2) or (
                 self.checkIfGuessedAllLetters(engine)
             ):
-                print("You guessed the word!\n")
+                print(f"\nYou guessed the word {(engine.activeWord).upper()}!\n")
                 self.score.updateScore(True)
                 break
             # if the user guess is a character, and it's right, display correct
